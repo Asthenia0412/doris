@@ -17,6 +17,7 @@
 
 package org.apache.doris.nereids.trees.plans.commands;
 
+import org.apache.doris.analysis.RedirectStatus;
 import org.apache.doris.catalog.Column;
 import org.apache.doris.catalog.Database;
 import org.apache.doris.catalog.DatabaseIf;
@@ -583,6 +584,11 @@ public class ShowDataCommand extends ShowCommand {
     @Override
     public String toString() {
         return toSql();
+    }
+
+    @Override
+    public RedirectStatus toRedirectStatus() {
+        return RedirectStatus.FORWARD_WITH_SYNC;
     }
 
     // |DBName|DataSize|RecycleSize|BinlogSize|
